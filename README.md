@@ -1,4 +1,4 @@
-Overview:
+Overview:  
 "Cherry Browser" (test.cherrybrowser) is a starting Android browser designed to reduce repetitive tasks whether when building a custom browser app or a new webview app, it provides a basic browser app that behaves normally like a normal Android Chromium browser out of the box. Build your browser apk and prototye fast without pulling hundreds of Megabytes of dependencies.
 
 Constraints:
