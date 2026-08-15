@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_bar"
     android:layout_width="match_parent"
     android:layout_height="56dp"
@@ -11,22 +12,22 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@android:drawable/ic_media_previous"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         android:contentDescription="Back"
         android:background="?attr/selectableItemBackgroundBorderless"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_forward"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@android:drawable/ic_media_next"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         android:contentDescription="Forward"
         android:background="?attr/selectableItemBackgroundBorderless"
-        />
+        app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <EditText
         android:id="@+id/url_input"
@@ -36,8 +37,13 @@
         android:layout_marginEnd="8dp"
         android:padding="8dp"
         android:background="@android:drawable/edit_text"
-        android:singleLine="true"
-        android:hint="Search or enter address" />
+        android:maxLines="1"
+        android:inputType="textUri"
+        android:hint="Search or enter address"
+        app:layout_constraintStart_toEndOf="@id/btn_forward"
+        app:layout_constraintEnd_toStartOf="@id/btn_tabs"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_tabs"
@@ -46,7 +52,9 @@
         android:src="@android:drawable/ic_menu_agenda"
         android:contentDescription="Tabs"
         android:background="?attr/selectableItemBackgroundBorderless"
-        />
+        app:layout_constraintEnd_toStartOf="@id/btn_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_menu"
@@ -55,16 +63,8 @@
         android:src="@android:drawable/ic_menu_more"
         android:contentDescription="Menu"
         android:background="?attr/selectableItemBackgroundBorderless"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- constraint connections -->
-    <!-- left group -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="8dp" />
-
-    <!-- We wire constraints in code or leave implicit for brevity -->
 </androidx.constraintlayout.widget.ConstraintLayout>
