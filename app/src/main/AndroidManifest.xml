@@ -16,7 +16,7 @@
         android:theme="@style/Theme.App">
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ConsoleActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:exported="false" android:name=".MainActivity">
             <intent-filter>
                 <action android:exported="false" android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
