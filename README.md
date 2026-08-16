@@ -1,7 +1,7 @@
-Overview:  
+# Overview:  
 "Cherry Browser" (test.cherrybrowser) is a starting Android browser designed to reduce repetitive tasks whether when building a custom browser app or a new webview app, it provides a basic browser app that behaves normally like a normal Android Chromium browser out of the box. Build your browser apk and prototye fast without pulling hundreds of Megabytes of dependencies.
 
-Constraints:
+## Constraints:
 - Using Android system webview.
 - Minimum SDK 26
 - Target SDK 33
@@ -12,7 +12,7 @@ Constraints:
 - Only use built-in classes. No external dependencies unless it's a dead end.
 - External dependencies that pulls hundreds of Megabytes of dependency tree is a big no.
 
-Features:
+## Features:
 - Solving common issues on a fresh bare Android webview app such as:
   - Loading common non standard hosts such as localhost, IP address, host with ports, etc.
   - Input upload
@@ -29,7 +29,7 @@ Features:
 - Anti-wipe web storages: localStorage and IndexedDB are treated like a precious app's data and prevented from being wiped on low storage condition.
 - Good caching mechanisms for fast page load and reduced data usage.
 
-UI:
+## UI:
 - Clean, minimalist UI out of the box: Bottom browser bar combining address bar, navigation buttons, and menu button that will open a small menu window.
 - Native homepage.
 - Minimalist tab list view.
@@ -39,3 +39,26 @@ UI:
   - Single tab mode: Only foreground tab kept-alive, background tabs will be saved in a snapshot when switching tab and reloaded on demand.
   - User agent selection/custom.
   - Manage webview caches, cookies, and web storages.
+ 
+## Project structures:
+- build.gradle (root)
+- settings.gradle
+- app/
+  - build.gradle
+  - src/main/AndroidManifest.xml
+  - src/main/java/test/cherrybrowser/ (Kotlin files)
+    - MainActivity.kt
+    - BrowserWebView.kt
+    - TabManager.kt
+    - BrowserTab.kt
+    - DownloadService.kt
+    - SettingsActivity.kt
+    - ConsoleActivity.kt (in-app JS console viewer)
+  - src/main/res/layout/
+    - activity_main.xml
+    - layout_bottom_bar.xml
+    - item_tab.xml
+    - activity_tab_list.xml
+    - activity_settings.xml
+  - src/main/res/values/strings.xml
+  - src/main/res/values/themes.xml
