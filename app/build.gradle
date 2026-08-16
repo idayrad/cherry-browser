@@ -14,6 +14,16 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            // outputFileName is a property on the output object
+            // outputFileName = "${variant.applicationId}-${variant.versionName}.apk"
+            
+            // Optional: If you also want to include the build type (debug/release)
+            outputFileName = "${variant.applicationId}-${variant.versionName}-${variant.buildType.name}.apk"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
