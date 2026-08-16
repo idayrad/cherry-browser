@@ -29,6 +29,7 @@ import java.io.File
 class MainActivity : AppCompatActivity() {
     companion object {
         const val FILE_CHOOSER_REQUEST = 101
+        const val REQUEST_TAB_LIST = 102
     }
 
     private lateinit var container: ConstraintLayout
@@ -149,29 +150,43 @@ class MainActivity : AppCompatActivity() {
     private var pendingFileChooser: ValueCallback<Array<Uri>>? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == FILE_CHOOSER_REQUEST) {
-            val result = if (resultCode == Activity.RESULT_OK && data != null) {
-                val uri = data.data
-                arrayOf(uri!!)
-            } else null
-            pendingFileChooser?.onReceiveValue(result)
-            pendingFileChooser = null
-            return
-        }
-        super.onActivityResult(requestCode, resultCode, data)
+    if (requestCode == FILE_CHOOSER_REQUEST) {
+        val result = if (resultCode == Activity.RESULT_OK && data != null) {
+            val uri = data.data
+            arrayOf(uri!!)
+        } else null
+        pendingFileChooser?.onReceiveValue(result)
+        pendingFileChooser = null
+        return
     }
 
-    private fun showTabList() {
-        val tabs = tabManager.list()
-        val titles = tabs.map { it.title ?: it.url }.toTypedArray()
-        AlertDialog.Builder(this)
-            .setTitle("Tabs")
-            .setItems(titles) { _, which ->
-                openTab(tabs[which])
+    if (requestCode == REQUEST_TAB_LIST) {
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            val sel = data.getStringExtra("selected_tab_id")
+            val action = data.getStringExtra("action")
+            if (action == "new") {
+                newTab("about:blank")
+            } else if (sel != null) {
+                val t = tabManager.find(sel)
+                if (t != null) {
+                    openTab(t)
+                } else {
+                    // fallback: open first or new
+                    val first = tabManager.list().firstOrNull()
+                    if (first != null) openTab(first) else newTab("about:blank")
+                }
             }
-            .setNeutralButton("New") { _, _ -> newTab("about:blank") }
-            .show()
+        }
+        return
     }
+
+    super.onActivityResult(requestCode, resultCode, data)
+	}
+
+    private fun showTabList() {
+    	val intent = Intent(this, TabListActivity::class.java)
+    	startActivityForResult(intent, REQUEST_TAB_LIST)
+	}
 
     private fun showMenu() {
         val items = arrayOf("New Tab", "Settings", "Console")
