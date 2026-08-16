@@ -54,7 +54,8 @@ class BrowserWebView @JvmOverloads constructor(
         ws.allowContentAccess = true
         ws.databaseEnabled = true
         ws.cacheMode = WebSettings.LOAD_DEFAULT
-        ws.setAppCacheEnabled(true)
+        // Removed method
+		// ws.setAppCacheEnabled(true)
 
         // improve compatibility
         ws.userAgentString = ws.userAgentString + " CherryBrowser/0.1"
