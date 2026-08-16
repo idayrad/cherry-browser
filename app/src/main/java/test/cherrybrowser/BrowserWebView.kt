@@ -58,7 +58,8 @@ class BrowserWebView @JvmOverloads constructor(
 		// ws.setAppCacheEnabled(true)
 
         // improve compatibility
-        ws.userAgentString = ws.userAgentString + " CherryBrowser/0.1"
+        //ws.userAgentString = ws.userAgentString + " CherryBrowser/0.1"
+        ws.userAgentString = "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36";
         // Accept mixed content for localhost and many test sites
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ws.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
